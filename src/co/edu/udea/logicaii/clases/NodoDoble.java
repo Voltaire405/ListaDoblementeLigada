@@ -1,22 +1,22 @@
 package co.edu.udea.logicaii.clases;
 
 public class NodoDoble {
-    private Object dato;
+    private Integer dato;
     private  NodoDoble li;
     private  NodoDoble ld;
 
-    public NodoDoble(Object dato) {
+    public NodoDoble(Integer dato) {
         this.setDato(dato);
         this.setLi(null);
         this.setLd(null);
     }
 
 
-    public Object getDato() {
+    public int getDato() {
         return dato;
     }
 
-    public void setDato(Object dato) {
+    public void setDato(Integer dato) {
         this.dato = dato;
     }
 
