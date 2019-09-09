@@ -98,6 +98,11 @@ public class LDLC {
 			x.getLd().setLi(x);
 			
 			if(y==ultimo) {
+				//Puesto que es una lista circular, si el nodo "y" es 
+				//igual al ultimo nodo, exiten dos posibilidades: 
+				// que el nodo "x" sea mayor que el ultimo o menor
+				//que el primero
+				
 				if(x.getDato() < primero.getDato()) {
 					primero=x;
 				}
@@ -142,7 +147,12 @@ public class LDLC {
 		else {
 			x.getLi().setLd(x.getLd());
 			x.getLd().setLi(x.getLi());
-			
+			if(x==primero) {
+				primero= x.getLd();
+			}
+			if(x==ultimo) {
+				ultimo=x.getLi();
+			}
 		}
 		
 	}
@@ -161,5 +171,23 @@ public class LDLC {
 	
 	public void actualizarLista() {
 		
+	}
+	
+	public void insertarAlFinal(int d) {
+		NodoDoble x= new NodoDoble(d);
+		x.setLi(ultimo);
+		x.setLd(primero);
+		ultimo.setLd(x);
+		primero.setLi(x);
+		ultimo=x;
+	}
+	
+	public void insertarAlPrincipio(int d) {
+		NodoDoble x= new NodoDoble(d);
+		x.setLi(ultimo);
+		x.setLd(primero);
+		ultimo.setLd(x);
+		primero.setLi(x);
+		primero=x;
 	}
 }
