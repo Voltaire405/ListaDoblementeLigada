@@ -34,11 +34,12 @@ public class LDLC {
 		}
 		
 		do {
-			System.out.println(p.getDato() + " - ");
+
+			System.out.print("-" + p.getDato() + "-");
 			p=p.getLd();
 		}
 		while(p!= primero);
-		System.out.println("\b\b");			//elimina ultimo caracter "-"
+		//System.out.println('\b');			//elimina ultimo caracter "-"
 	}
 	
 	public NodoDoble anterior(NodoDoble x) {
@@ -158,19 +159,79 @@ public class LDLC {
 	}
 	
 	public void ordenarDescendentemente() {
-		
+		NodoDoble p, ap, mayor, aMayor, q, aq;
+		if(primero==null) {
+			return;
+		}
+		p=primerNodo();
+		ap=anterior(p);
+		while(p != ultimoNodo()) {
+			mayor=p;
+			aMayor=ap;
+			q=p.getLd();
+			aq=p;
+			
+			while(!finDeRecorrido(q)) {
+				if(q.getDato()> mayor.getDato()) {
+					mayor=q;
+					aMayor=aq;
+				}
+				aq=q;
+				q=q.getLd();
+			}
+			if(mayor==p) {
+				ap=p;
+				p=p.getLd();
+			}
+			else {
+				desconectar(mayor);
+				if(ap==ultimo) {
+					mayor.setLi(ultimo);
+					mayor.setLd(primero);
+					ultimo.setLd(mayor);
+					primero.setLi(mayor);
+					primero=mayor;
+				}
+				else {
+					conectar(mayor, ap);
+				}
+				ap=mayor;
+			}
+		}	
 	}
 	
 	public void intercambiarExtremos() {
-		
+		conectar(primero, ultimo.getLi());
+		primero=ultimo;
+		ultimo= primero.getLi();
 	}
 	
-	public void eliminarLista() {
-		
+	public void eliminarLista() {	
+		NodoDoble x= primerNodo();
+		if(x==null) {
+			return;
+		}
+		do {
+			desconectar(x);
+			x=x.getLd();
+		}while(primero != null);
 	}
 	
-	public void actualizarLista() {
-		
+	public void actualizarLista(int d, int opcion) {
+		switch (opcion) {
+		case 1:
+			insertarAlFinal(d);
+			break;
+		case 2:
+			insertarAlPrincipio(d);
+			break;
+		case 3:
+			NodoDoble y= buscaDondeInsertar(d);
+			insertar(d, y);
+			break;
+		default:
+			break;
+		}
 	}
 	
 	public void insertarAlFinal(int d) {
@@ -190,4 +251,5 @@ public class LDLC {
 		primero.setLi(x);
 		primero=x;
 	}
+	
 }
