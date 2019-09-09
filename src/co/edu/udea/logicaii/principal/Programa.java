@@ -12,7 +12,6 @@ public class Programa {
 
         do {
             option = mainMenu(option);
-
             evalOptionMainMenu(option, ldlc);
 
         }while(!"0".equals(option));
@@ -64,17 +63,22 @@ public class Programa {
 
     //Evalua la opcion ingresada por el usuario
     private  static void evalOptionMainMenu(String opt, LDLC lista){
-        switch (opt){
-            case "1":
-                crearLista(lista);
-                break;
-            case "2":
-                actualizarLista(lista);
-                break;
+        try {
+            switch (opt){
+                case "1":
+                    crearLista(lista);
+                    break;
+                case "2":
+                    actualizarLista(lista);
+                    break;
 
-            default:
-                break;
+                default:
+                    break;
+            }
+        }catch (NullPointerException e){
+            System.exit(0);
         }
+
     }
 
     //Menu del método crearlista
