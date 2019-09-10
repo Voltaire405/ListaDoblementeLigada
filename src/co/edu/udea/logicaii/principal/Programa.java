@@ -327,7 +327,7 @@ public class Programa {
                     option = JOptionPane.showInputDialog("1.Agregar nuevo" +
                             "\n" +
                             " 0. Terminar");
-                } while (!"0".equals(option));
+                } while ("1".equals(option));
 
                 break;
             case "3":
@@ -341,7 +341,7 @@ public class Programa {
                     option = JOptionPane.showInputDialog("1.Agregar nuevo" +
                             "\n" +
                             " 0. Terminar");
-                } while (!"0".equals(option));
+                } while ("1".equals(option));
                 break;
 
             default:
