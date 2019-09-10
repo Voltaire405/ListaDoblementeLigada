@@ -8,9 +8,7 @@ import java.text.ParseException;
 public class Programa {
     public static void main(String[] args) {
         LDLC ldlc = new LDLC();
-        
-
-        
+                
         String option = "";
 
         do {

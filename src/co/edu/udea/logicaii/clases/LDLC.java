@@ -34,7 +34,6 @@ public class LDLC {
 		}
 		
 		do {
-
 			System.out.print("-" + p.getDato() + "-");
 			p=p.getLd();
 		}
@@ -201,9 +200,12 @@ public class LDLC {
 	}
 	
 	public void intercambiarExtremos() {
-		conectar(primero, ultimo.getLi());
+		NodoDoble x=primerNodo();
+		desconectar(x);
+		conectar(x, ultimo.getLi());
 		primero=ultimo;
-		ultimo= primero.getLi();
+		ultimo= x;
+		
 	}
 	
 	public void eliminarLista() {	
@@ -236,20 +238,34 @@ public class LDLC {
 	
 	public void insertarAlFinal(int d) {
 		NodoDoble x= new NodoDoble(d);
-		x.setLi(ultimo);
-		x.setLd(primero);
-		ultimo.setLd(x);
-		primero.setLi(x);
-		ultimo=x;
+		if(primero==null) {
+			primero=x;
+			ultimo=x;
+		}
+		else {
+			x.setLi(ultimo);
+			x.setLd(primero);
+			ultimo.setLd(x);
+			primero.setLi(x);
+			ultimo=x;
+		}
+		
 	}
 	
 	public void insertarAlPrincipio(int d) {
 		NodoDoble x= new NodoDoble(d);
-		x.setLi(ultimo);
-		x.setLd(primero);
-		ultimo.setLd(x);
-		primero.setLi(x);
-		primero=x;
+		if(primero==null) {
+			primero=x;
+			ultimo=x;
+		}
+		else {
+			x.setLi(ultimo);
+			x.setLd(primero);
+			ultimo.setLd(x);
+			primero.setLi(x);
+			primero=x;
+		}
+		
 	}
 	
 }
