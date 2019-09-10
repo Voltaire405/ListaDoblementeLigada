@@ -1,13 +1,13 @@
 package co.edu.udea.logicaii.clases;
 
+import javax.swing.JOptionPane;
+
 public class LDLC {
 	private NodoDoble primero, ultimo;
-	//private boolean finDeRecorrido;
 	
 	public LDLC() {			//constructor
 		primero=null;
 		ultimo= null;
-		//finDeRecorrido=false;
 	}
 	
 	public boolean esVacia() {
@@ -23,7 +23,7 @@ public class LDLC {
 	}
 	
 	public boolean finDeRecorrido(NodoDoble p) {
-		return p==primero; //p==primero && finDeRecorrido==true
+		return p==primero; 
 	}
 	
 	public void mostrarLista() {
@@ -38,7 +38,6 @@ public class LDLC {
 			p=p.getLd();
 		}
 		while(p!= primero);
-		//System.out.println('\b');			//elimina ultimo caracter "-"
 	}
 	
 	public NodoDoble anterior(NodoDoble x) {
@@ -116,7 +115,7 @@ public class LDLC {
 	public NodoDoble buscarDato(int d) {
 		NodoDoble x= primerNodo();
 		
-		if(x==null) {			//caso lista vacia
+		if(x==null) {				//caso lista vacia
 			return x;
 		}
 		
@@ -132,7 +131,7 @@ public class LDLC {
 	
 	public void borrar(NodoDoble x, int d) {
 		if(x==null || x.getDato()!= d) {
-			System.out.println("El dato a borrar no existe");
+			JOptionPane.showMessageDialog(null, "El dato a borrar no existe");
 			return;
 		}
 		
