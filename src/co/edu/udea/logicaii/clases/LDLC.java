@@ -242,6 +242,8 @@ public class LDLC {
 	public void insertarAlFinal(int d) {
 		NodoDoble x= new NodoDoble(d);
 		if(primero==null) {
+			x.setLd(x);
+			x.setLi(x);
 			primero=x;
 			ultimo=x;
 		}
@@ -258,8 +260,11 @@ public class LDLC {
 	public void insertarAlPrincipio(int d) {
 		NodoDoble x= new NodoDoble(d);
 		if(primero==null) {
+			x.setLd(x);
+			x.setLi(x);
 			primero=x;
 			ultimo=x;
+			
 		}
 		else {
 			x.setLi(ultimo);
