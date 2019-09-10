@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7201810-e837-4662-8235-9e9932f2769d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ListaDoblementeLigada/co/edu/udea/logicaii/clases/LDLC.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ListaDoblementeLigada/co/edu/udea/logicaii/clases/LDLC.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/udea/logicaii/clases/LDLC.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/udea/logicaii/clases/LDLC.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/co/edu/udea/logicaii/principal/Programa.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/co/edu/udea/logicaii/principal/Programa.java" afterDir="false" />
-    </list>
+    <list default="true" id="e7201810-e837-4662-8235-9e9932f2769d" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,28 +52,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/co/edu/udea/logicaii/principal/Programa.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="343" column="45" lean-forward="true" selection-start-line="343" selection-start-column="45" selection-end-line="343" selection-end-column="45" />
+            <state relative-caret-position="140">
+              <caret line="136" selection-start-line="136" selection-end-line="136" />
               <folding>
                 <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/co/edu/udea/logicaii/clases/LDLC.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="302" column="31" lean-forward="true" selection-start-line="302" selection-start-column="31" selection-end-line="302" selection-end-column="31" />
-              <folding>
-                <element signature="e#286#287#0" expanded="true" />
-                <element signature="e#313#314#0" expanded="true" />
-                <element signature="e#348#349#0" expanded="true" />
-                <element signature="e#369#370#0" expanded="true" />
-                <element signature="e#500#501#0" expanded="true" />
-                <element signature="e#471#472#0" expanded="true" />
-                <element signature="e#496#497#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -237,7 +214,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41258000" />
+    <option name="totallyTimeSpent" value="41332000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -250,7 +227,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1448" y="-8" width="1456" height="876" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19627507" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -347,8 +323,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/co/edu/udea/logicaii/principal/Programa.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="343" column="45" lean-forward="true" selection-start-line="343" selection-start-column="45" selection-end-line="343" selection-end-column="45" />
+        <state relative-caret-position="140">
+          <caret line="136" selection-start-line="136" selection-end-line="136" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
