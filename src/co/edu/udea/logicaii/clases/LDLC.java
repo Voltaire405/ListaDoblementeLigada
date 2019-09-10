@@ -1,5 +1,7 @@
 package co.edu.udea.logicaii.clases;
 
+import javax.swing.JOptionPane;
+
 public class LDLC {
 	private NodoDoble primero, ultimo;
 	//private boolean finDeRecorrido;
@@ -23,7 +25,7 @@ public class LDLC {
 	}
 	
 	public boolean finDeRecorrido(NodoDoble p) {
-		return p==primero; //p==primero && finDeRecorrido==true
+		return p==primero;
 	}
 	
 	public void mostrarLista() {
@@ -34,7 +36,7 @@ public class LDLC {
 		}
 		
 		do {
-			System.out.println(p.getDato() + " - ");
+			System.out.print("-" + p.getDato() + "-");
 			p=p.getLd();
 		}
 		while(p!= primero);
@@ -98,6 +100,11 @@ public class LDLC {
 			x.getLd().setLi(x);
 			
 			if(y==ultimo) {
+				//Puesto que es una lista circular, si el nodo "y" es
+				//igual al ultimo nodo, exiten dos posibilidades:
+				// que el nodo "x" sea mayor que el ultimo o menor
+				//que el primero
+
 				if(x.getDato() < primero.getDato()) {
 					primero=x;
 				}
@@ -111,7 +118,7 @@ public class LDLC {
 	public NodoDoble buscarDato(int d) {
 		NodoDoble x= primerNodo();
 		
-		if(x==null) {			//caso lista vacia
+		if(x==null) {				//caso lista vacia
 			return x;
 		}
 		
@@ -127,7 +134,7 @@ public class LDLC {
 	
 	public void borrar(NodoDoble x, int d) {
 		if(x==null || x.getDato()!= d) {
-			System.out.println("El dato a borrar no existe");
+			JOptionPane.showMessageDialog(null, "El dato a borrar no existe");
 			return;
 		}
 		
@@ -142,31 +149,125 @@ public class LDLC {
 		else {
 			x.getLi().setLd(x.getLd());
 			x.getLd().setLi(x.getLi());
-			
+			if(x==primero) {
+				primero= x.getLd();
+			}
+			if(x==ultimo) {
+				ultimo=x.getLi();
+			}
 		}
 		
 	}
 	
 	public void ordenarDescendentemente() {
-		
+		NodoDoble p, ap, mayor, aMayor, q, aq;
+		if(primero==null) {
+			return;
+		}
+		p=primerNodo();
+		ap=anterior(p);
+		while(p != ultimoNodo()) {
+			mayor=p;
+			aMayor=ap;
+			q=p.getLd();
+			aq=p;
+
+			while(!finDeRecorrido(q)) {
+				if(q.getDato()> mayor.getDato()) {
+					mayor=q;
+					aMayor=aq;
+				}
+				aq=q;
+				q=q.getLd();
+			}
+			if(mayor==p) {
+				ap=p;
+				p=p.getLd();
+			}
+			else {
+				desconectar(mayor);
+				if(ap==ultimo) {
+					mayor.setLi(ultimo);
+					mayor.setLd(primero);
+					ultimo.setLd(mayor);
+					primero.setLi(mayor);
+					primero=mayor;
+				}
+				else {
+					conectar(mayor, ap);
+				}
+				ap=mayor;
+			}
+		}
 	}
 	
 	public void intercambiarExtremos() {
-		
+		NodoDoble x=primerNodo();
+		desconectar(x);
+		conectar(x, ultimo.getLi());
+		primero=ultimo;
+		ultimo= x;
+
 	}
 	
 	public void eliminarLista() {
-		
+		NodoDoble x= primerNodo();
+		if(x==null) {
+			return;
+		}
+		do {
+			desconectar(x);
+			x=x.getLd();
+		}while(primero != null);
+	}
+
+	public void actualizarLista(int d, int opcion) {
+		switch (opcion) {
+		case 1:
+			insertarAlFinal(d);
+			break;
+		case 2:
+			insertarAlPrincipio(d);
+			break;
+		case 3:
+			NodoDoble y= buscaDondeInsertar(d);
+			insertar(d, y);
+			break;
+		default:
+			break;
+		}
 	}
 	
-	public void actualizarLista() {
+	public void insertarAlFinal(int d) {
+		NodoDoble x= new NodoDoble(d);
+		if(primero==null) {
+			primero=x;
+			ultimo=x;
+		}
+		else {
+			x.setLi(ultimo);
+			x.setLd(primero);
+			ultimo.setLd(x);
+			primero.setLi(x);
+			ultimo=x;
+		}
 		
 	}
 
-	//Añade dato al final de la lista.
-	public void addToEnd(Integer data){
-		insertar(data, ultimoNodo());
-		this.ultimo = this.primero;
-		primero = primero.getLd();
+	public void insertarAlPrincipio(int d) {
+		NodoDoble x= new NodoDoble(d);
+		if(primero==null) {
+			primero=x;
+			ultimo=x;
+		}
+		else {
+			x.setLi(ultimo);
+			x.setLd(primero);
+			ultimo.setLd(x);
+			primero.setLi(x);
+			primero=x;
+		}
+
 	}
+
 }
