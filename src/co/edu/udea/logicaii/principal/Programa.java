@@ -14,79 +14,82 @@ public class Programa {
             option = mainMenu(option);
             evalOptionMainMenu(option, ldlc);
 
-        }while(!"0".equals(option));
+        } while (!"0".equals(option));
 
     }
 
     //Muestra el menu principal de opciones
-    private static String mainMenu(String option){
+    private static String mainMenu(String option) {
 
-            option = JOptionPane.showInputDialog(null,"1. crearLista()" +
-                    "\n" +
-                            "2. actualizaLista()" +
-                    "\n" +
-                            "3. esVacia()" +
-                    "\n" +
-                            " 4. primerNodo()" +
-                    "\n" +
-                            " 5. ultimoNodo()" +
-                    "\n" +
-                            " 6. finDeRecorrido" +
-                    "\n" +
-                            " 7. mostrarLista()" +
-                    "\n" +
-                            " 8. anterior()" +
-                    "\n" +
-                            " 9. buscarDondeInsertar()" +
-                    "\n" +
-                            " 10. insertar()" +
-                    "\n" +
-                            " 11. conectar()" +
-                    "\n" +
-                            " 12. buscarDato()" +
-                    "\n" +
-                            " 13. borrar()" +
-                    "\n" +
-                            " 14 desconectar()" +
-                    "\n" +
-                            " 15. ordenarDescendentemente()" +
-                    "\n" +
-                            " 16. intercambiarExtremos()" +
-                    "\n" +
-                            " 17. eliminarLista()" +
-                    "\n" +
-                            " 0. Salir"
-            );
+        option = JOptionPane.showInputDialog(null, "1. crearLista()" +
+                "\n" +
+                "2. actualizaLista()" +
+                "\n" +
+                "3. esVacia()" +
+                "\n" +
+                " 4. primerNodo()" +
+                "\n" +
+                " 5. ultimoNodo()" +
+                "\n" +
+                " 6. finDeRecorrido" +
+                "\n" +
+                " 7. mostrarLista()" +
+                "\n" +
+                " 8. anterior()" +
+                "\n" +
+                " 9. buscarDondeInsertar()" +
+                "\n" +
+                " 10. insertar()" +
+                "\n" +
+                " 11. conectar()" +
+                "\n" +
+                " 12. buscarDato()" +
+                "\n" +
+                " 13. borrar()" +
+                "\n" +
+                " 14 desconectar()" +
+                "\n" +
+                " 15. ordenarDescendentemente()" +
+                "\n" +
+                " 16. intercambiarExtremos()" +
+                "\n" +
+                " 17. eliminarLista()" +
+                "\n" +
+                " 0. Salir"
+        );
 
-            return option;
+        return option;
     }
 
     //Evalua la opcion ingresada por el usuario
-    private  static void evalOptionMainMenu(String opt, LDLC lista){
+    private static void evalOptionMainMenu(String opt, LDLC lista) {
         try {
-            switch (opt){
+            switch (opt) {
                 case "1":
-                    crearLista(lista);
+                    crearActualizarLista(lista, opt);
                     break;
                 case "2":
-                    actualizarLista(lista);
+                    crearActualizarLista(lista, opt);
+                    break;
+                case "7":
+                    lista.mostrarLista();
                     break;
 
                 default:
                     break;
             }
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             System.exit(0);
         }
 
     }
 
     //Menu del método crearlista
-    private  static void crearLista(LDLC lista){
+    private static void crearActualizarLista(LDLC lista, String source) {
         String option;
 
         do {
-            option = JOptionPane.showInputDialog(null,"1. Agregar al final" +
+            option = JOptionPane.showInputDialog(null, "1. Agregar al final" +
                     "\n" +
                     "2. Agregar al principio" +
                     "\n" +
@@ -94,122 +97,65 @@ public class Programa {
                     "\n" +
                     " 0. Atras"
             );
+            if ("0".equals(option))
+                break;
+            evalOptionCrearActualizarLista(option, lista, source);
 
-            evalOptionCrearLista(option, lista);
-
-        }while(!"0".equals(option));
+        } while ("1".equals(option)||"2".equals(option)||"3".equals(option));
 
 
     }
 
     //Evalua la opcion ingresada por el usuario para CrearLista
-    private  static void evalOptionCrearLista(String opt, LDLC lista){
+    private static void evalOptionCrearActualizarLista(String opt, LDLC lista, String source) {
         Integer userEntry;
         String option;
+        if ("1".equals(source)){lista.eliminarLista();}    //Crear es identico a actualizar
+            //con la salvedad que crear implica limpiar la lista.
 
-        switch (opt){
+        switch (opt) {
             case "1":
-                lista = new LDLC();
-                try {
-                    userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                    lista.addToEnd(userEntry);
 
-                }catch (NumberFormatException e){
-                    JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
-                }
                 do {
-                    option = JOptionPane.showInputDialog("1.Agregar nuevo" +
-                            "\n" +
-                                    " 0. Terminar");
-                    if ("1".equals(option)){
-                        try {
-                            userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                            lista.addToEnd(userEntry);
-                        }catch (NumberFormatException e){
-                            JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
-                        }
+                    try {
+                        userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
+                        lista.actualizarLista(userEntry,opt);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Entrada no es un entero válido!");
                     }
-                }while (!"0".equals(option));
-
-                break;
-            case "2":
-                try {
-                    userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                    lista.insertar(userEntry, lista.ultimoNodo());
-                }catch (NumberFormatException e){
-                    JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
-                }
-                do {
                     option = JOptionPane.showInputDialog("1.Agregar nuevo" +
                             "\n" +
                             " 0. Terminar");
-                    if (option.equals(1)){
-                        try {
-                            userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                            lista.insertar(userEntry, lista.ultimoNodo());
-                        }catch (NumberFormatException e){
-                            JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
-                        }
-                    }
-                }while (!"0".equals(option));
+
+                } while ("1".equals(option));
 
                 break;
-            case "3":
-                try {
-                    userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                    lista.insertar(userEntry, lista.buscaDondeInsertar(userEntry));
-                }catch (NumberFormatException e){
-                    JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
-                }
+            case "2":
                 do {
+                    try {
+                        userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
+                        lista.actualizarLista(userEntry,opt);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Entrada no es un entero válido!");
+                    }
                     option = JOptionPane.showInputDialog("1.Agregar nuevo" +
                             "\n" +
                             " 0. Terminar");
-                    if (option.equals(1)){
-                        try {
-                            userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                            lista.insertar(userEntry, lista.ultimoNodo());
-                        }catch (NumberFormatException e){
-                            JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
-                        }
-                    }
-                }while (!"0".equals(option));
-                break;
+                } while (!"0".equals(option));
 
-            default:
-                break;
-        }
-    }
-
-    //Menu del método actualizaLista
-    private  static void actualizarLista(LDLC lista){
-        String option;
-        do {
-            option = JOptionPane.showInputDialog(null,"1. Agregar al final" +
-                    "\n" +
-                    "2. Agregar al principio" +
-                    "\n" +
-                    "3. Agregar y ordenar ascendentemente" +
-                    "\n" +
-                    " 0. Atras"
-            );
-
-            evalOptionActualizarLista(option,lista);
-
-        }while(!"0".equals(option));
-    }
-
-    //Evalua la opcion ingresada por el usuario para CrearLista
-    private  static void evalOptionActualizarLista(String opt, LDLC lista){
-        switch (opt){
-            case "1":
-                crearLista(lista);
-                break;
-            case "2":
-                actualizarLista(lista);
                 break;
             case "3":
-                
+                do {
+                    try {
+                        userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
+                        lista.actualizarLista(userEntry,opt);
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(null, "Entrada no es un entero válido!");
+                    }
+                    option = JOptionPane.showInputDialog("1.Agregar nuevo" +
+                            "\n" +
+                            " 0. Terminar");
+                } while (!"0".equals(option));
                 break;
 
             default:

@@ -30,17 +30,18 @@ public class LDLC {
 	
 	public void mostrarLista() {
 		NodoDoble p=primerNodo();
+		String dataToPrint ="";
 		
 		if(p==null) {			//if para verificar si la lista est� vacia			
 			return;
 		}
 		
 		do {
-			System.out.print("-" + p.getDato() + "-");
+			dataToPrint += "[" + p.getDato() + "] ";
 			p=p.getLd();
 		}
 		while(p!= primero);
-		System.out.println("\b\b");			//elimina ultimo caracter "-"
+		JOptionPane.showMessageDialog(null, dataToPrint);
 	}
 	
 	public NodoDoble anterior(NodoDoble x) {
@@ -221,15 +222,15 @@ public class LDLC {
 		}while(primero != null);
 	}
 
-	public void actualizarLista(int d, int opcion) {
+	public void actualizarLista(int d, String opcion) {
 		switch (opcion) {
-		case 1:
+		case "1":
 			insertarAlFinal(d);
 			break;
-		case 2:
+		case "2":
 			insertarAlPrincipio(d);
 			break;
-		case 3:
+		case "3":
 			NodoDoble y= buscaDondeInsertar(d);
 			insertar(d, y);
 			break;
