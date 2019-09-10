@@ -28,16 +28,19 @@ public class LDLC {
 	
 	public void mostrarLista() {
 		NodoDoble p=primerNodo();
-		
+		String texto="";
 		if(p==null) {			//if para verificar si la lista está vacia			
+			JOptionPane.showMessageDialog(null, "Lista Vacia");
 			return;
 		}
 		
 		do {
-			System.out.print("-" + p.getDato() + "-");
+			texto+="- " + Integer.toString(p.getDato()) + " -";
 			p=p.getLd();
 		}
 		while(p!= primero);
+		
+		JOptionPane.showMessageDialog(null, texto);
 	}
 	
 	public NodoDoble anterior(NodoDoble x) {
@@ -211,11 +214,12 @@ public class LDLC {
 		NodoDoble x= primerNodo();
 		if(x==null) {
 			return;
+			
 		}
-		do {
+		while(primero!=null) {
 			desconectar(x);
 			x=x.getLd();
-		}while(primero != null);
+		}
 	}
 	
 	public void actualizarLista(int d, int opcion) {
