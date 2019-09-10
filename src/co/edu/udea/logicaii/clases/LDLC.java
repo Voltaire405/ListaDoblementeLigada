@@ -29,7 +29,7 @@ public class LDLC {
 	public void mostrarLista() {
 		NodoDoble p=primerNodo();
 		
-		if(p==null) {			//if para verificar si la lista está vacia			
+		if(p==null) {			//if para verificar si la lista estï¿½ vacia			
 			return;
 		}
 		
@@ -161,5 +161,12 @@ public class LDLC {
 	
 	public void actualizarLista() {
 		
+	}
+
+	//AÃ±ade dato al final de la lista.
+	public void addToEnd(Integer data){
+		insertar(data, ultimoNodo());
+		this.ultimo = this.primero;
+		primero = primero.getLd();
 	}
 }

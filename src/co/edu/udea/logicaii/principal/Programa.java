@@ -112,7 +112,7 @@ public class Programa {
                 lista = new LDLC();
                 try {
                     userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                    lista.insertar(userEntry, lista.ultimoNodo());
+                    lista.addToEnd(userEntry);
 
                 }catch (NumberFormatException e){
                     JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
@@ -121,10 +121,10 @@ public class Programa {
                     option = JOptionPane.showInputDialog("1.Agregar nuevo" +
                             "\n" +
                                     " 0. Terminar");
-                    if (option.equals(1)){
+                    if ("1".equals(option)){
                         try {
                             userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
-                            lista.insertar(userEntry, lista.ultimoNodo());
+                            lista.addToEnd(userEntry);
                         }catch (NumberFormatException e){
                             JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
                         }
@@ -155,6 +155,25 @@ public class Programa {
 
                 break;
             case "3":
+                try {
+                    userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
+                    lista.insertar(userEntry, lista.buscaDondeInsertar(userEntry));
+                }catch (NumberFormatException e){
+                    JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
+                }
+                do {
+                    option = JOptionPane.showInputDialog("1.Agregar nuevo" +
+                            "\n" +
+                            " 0. Terminar");
+                    if (option.equals(1)){
+                        try {
+                            userEntry = Integer.parseInt(JOptionPane.showInputDialog("Ingrese por favor un entero como dato"));
+                            lista.insertar(userEntry, lista.ultimoNodo());
+                        }catch (NumberFormatException e){
+                            JOptionPane.showMessageDialog(null,"Entrada no es un entero válido!");
+                        }
+                    }
+                }while (!"0".equals(option));
                 break;
 
             default:
